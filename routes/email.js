@@ -6,6 +6,7 @@ const emailUser = process.env.nodemailer_user;
 const emailPass = process.env.nodemailer_pass;
 
 router.post('/', async (req, res) => {
+  console.log('post req: ', req);
   let fullName = req.body.fullName;
   let email = req.body.email;
   let message = req.body.message;
@@ -27,6 +28,10 @@ router.post('/', async (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
+      console.log('mailOptions: ', mailOptions);
+      console.log('error in func: ', error);
+      console.log('info: ', info);
+
       if (error) {
         console.log(error);
       } else {
