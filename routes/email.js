@@ -39,6 +39,11 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  console.log('in get...');
+  res.send({ message: 'Hello World!' });
+});
+
 // router.post('/', async (req, res) => {
 //   let fullName = req.body.fullName;
 //   let email = req.body.email;

@@ -2,6 +2,24 @@ document.getElementById('contactSubmitBtn').addEventListener('click', (e) => {
   e.preventDefault();
   handleContactSubmit();
 });
+
+document.getElementById('testBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  console.log('heard test btn...');
+
+  try {
+    const response = await fetch('/api/email', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {}
+});
+
 const handleContactSubmit = async () => {
   const body = {
     fullName: document.getElementById('formFullName').value,

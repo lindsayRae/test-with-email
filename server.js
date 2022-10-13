@@ -10,7 +10,7 @@ app.use(express.json()); // our server can accept json in body of request
 app.use('/api/email', email);
 
 app.get('/api', (req, res) => {
-  res.send('Hello World!');
+  res.send({ message: 'Hello World!' });
 });
 
 if (process.env.NODE_ENV === 'production') {
