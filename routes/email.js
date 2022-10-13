@@ -10,29 +10,33 @@ router.post('/', async (req, res) => {
   let email = req.body.email;
   let message = req.body.message;
 
-  let transporter = nodemailer.createTransport({
-    service: 'Outlook365',
-    auth: {
-      user: emailUser,
-      pass: emailPass,
-    },
-  });
+  try {
+    let transporter = nodemailer.createTransport({
+      service: 'Outlook365',
+      auth: {
+        user: emailUser,
+        pass: emailPass,
+      },
+    });
 
-  let mailOptions = {
-    from: emailUser,
-    to: 'lbarnett712@gmail.com',
-    subject: `Hello from fiverr test. From: ${fullName}`,
-    text: `From: ${email} Message: ${message}`,
-  };
+    let mailOptions = {
+      from: emailUser,
+      to: 'lbarnett712@gmail.com',
+      subject: `Hello from fiverr test. From: ${fullName}`,
+      text: `From: ${email} Message: ${message}`,
+    };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      res.send({ status: 200, message: 'Email was sent. Thank you!' });
-      console.log('Email sent: ' + info.response);
-    }
-  });
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        res.send({ status: 200, message: 'Email was sent. Thank you!' });
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  } catch (error) {
+    console.log('error: ', error);
+  }
 });
 
 // router.post('/', async (req, res) => {
